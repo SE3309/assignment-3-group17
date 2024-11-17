@@ -10,6 +10,8 @@ connection = pymysql.connect(
 
 with connection:
     with connection.cursor() as cursor:
+        # Generating data for all the tables
+
         """
         Conditions
         Primary key: weatherDescription
@@ -201,12 +203,16 @@ with connection:
                 cursor.execute(sql, (weatherID, weatherDescription))
 
 
-        """
-        Meaninguful Data
-        """
-        # Conditions: Already completed
 
-        # Technician:
+        # Generating a smaller amount of meaninguful Data
+
+        """
+        Conditions: Already completed
+        """
+
+        """
+        Technician
+        """
         NUMTECHS = 30
         rows = [
             ('tech1', 'password123', 'John Doe', 'johndoe@example.com', 3173512584, 0, 'A+, Network+'),
@@ -222,7 +228,9 @@ with connection:
             """
             cursor.execute(sql, (row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
 
-        # Owner:
+        """
+        Owner
+        """
         NUMOWNERS = 10
         rows = [
             ('owner1', 'password123', 'Alice Johnson', 'alicej@example.com', 9237967201, 0),
@@ -238,7 +246,9 @@ with connection:
             """
             cursor.execute(sql, (row[0], row[1], row[2], row[3], row[4], row[5]))
 
-        # Farm:
+        """
+        Farm
+        """
         NUMFARMS = 10
         rowsF = [
             (0, 6838040453, 'Ontario', 'London', 'Main St', 123, 1 + NUMOWNERS),
@@ -254,7 +264,9 @@ with connection:
             """
             cursor.execute(sql, (row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
 
-        # Payment:
+        """
+        Payment
+        """
         rows = [
             (0, 1 + NUMFARMS, '2024-11-15', 900, '2024-11-1', '2024-11-15', True),
             (0, 1 + NUMFARMS, '2024-11-30', 960, '2024-11-16', '2024-11-30', True),
@@ -274,7 +286,9 @@ with connection:
             """
             cursor.execute(sql, (row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
 
-        # Panel:
+        """
+        Panel
+        """
         NUMPANELS = 1000
         inactivePanels = {}
         for i in range(0,5):
@@ -293,7 +307,9 @@ with connection:
                 """
                 cursor.execute(sql, (0, i+1+NUMFARMS, status, installationDate))
 
-        # Logs:
+        """
+        Logs
+        """
         for i in range(0,5):
             for j in range(0,100):
                 panelID = (i*100) + (j+1) + NUMPANELS
@@ -310,7 +326,9 @@ with connection:
                     """
                     cursor.execute(sql, (0, panelID, "system", message, logDate))
         
-        # Maintenance: 
+        """
+        Maintenance 
+        """
         for i in range(0,5):
             scheduleDate = '2024-12-' + str(random.randint(5,15))
             for j in range(0,100):
@@ -320,9 +338,11 @@ with connection:
                     INSERT INTO Maintenance (maintenanceID, panelID, scheduleDate, maintenanceType, maintenanceStatus, technicianID)
                     VALUES (%s,%s,%s,%s,%s,%s)
                     """
-                cursor.execute(sql, (0, i+1, scheduleDate, 'cleaning', 'scheduled', i+1+NUMTECHS))
+                cursor.execute(sql, (0, panelID, scheduleDate, 'cleaning', 'scheduled', i+1+NUMTECHS))
 
-        # EnergyProduced:
+        """
+        EnergyProduced
+        """
         energyProducedList = []
         for i in range(0,5):
             dateFarmEnergy = {}
@@ -349,7 +369,9 @@ with connection:
                     """
                     cursor.execute(sql, (currentDate, panelID, energyProduced))
         
-        # Weather:
+        """
+        Weather
+        """
         NUMWEATHER = 300
         for i in range(0,5):
             for j in range(0,30):
@@ -364,7 +386,9 @@ with connection:
                 """
                 cursor.execute(sql, (0, currentDate, rowsF[i][2], rowsF[i][3], averageTemperature, sunrise, sunset))
 
-        # FarmWeather:
+        """
+        FarmWeather
+        """
         for i in range(0,5):
             for j in range(0,30):
                 farmID = i+1 + NUMFARMS
@@ -375,7 +399,9 @@ with connection:
                 """
                 cursor.execute(sql, (farmID, weatherID))
         
-        # WeatherConditions:
+        """
+        WeatherConditions
+        """
         for i in range(0,5):
             for j in range(0,30):
                 weatherID = (i*30) + (j+1) + NUMWEATHER
