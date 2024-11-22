@@ -34,7 +34,7 @@ with connection:
             INSERT INTO Technician (username, userPassword, personName, email, phoneNumber, technicianID, certifications)
             VALUES (%s,%s,%s,%s,%s,%s,%s)
             """
-            cursor.execute(sql, ('user'+s,'password'+s,'name'+s,'email'+s,319226+i,0,'certifications'+s))
+            cursor.execute(sql, ('technician'+s,'password'+s,'tName'+s,'tEmail'+s,119226+i,0,'certifications'+s))
 
         """
         Owner
@@ -47,7 +47,7 @@ with connection:
             INSERT INTO Owner (username, userPassword, personName, email, phoneNumber, ownerID)
             VALUES (%s,%s,%s,%s,%s,%s)
             """
-            cursor.execute(sql, ('user'+s,'password'+s,'name'+s,'email'+s,319226+i,0))
+            cursor.execute(sql, ('owner'+s,'password'+s,'oName'+s,'oEmail'+s,219226+i,0))
 
         """
         Farm
@@ -215,11 +215,11 @@ with connection:
         """
         NUMTECHS = 30
         rows = [
-            ('tech1', 'password123', 'John Doe', 'johndoe@example.com', 3173512584, 0, 'A+, Network+'),
-            ('tech2', 'secure_pass', 'Jane Smith', 'janesmith@example.com', 4105686692, 0, 'CCNA, CCNP'),
-            ('tech3', 'tech3pass', 'Michael Johnson', 'michaelj@example.com', 5082959118, 0, 'Security+'),
-            ('tech4', 'pass4tech', 'Emily Davis', 'emilyd@example.com', 6134402951, 0, 'MCSA, MCSE'),
-            ('tech5', 'strong_pass', 'David Lee', 'davidlee@example.com', 4573827517, 0, 'Linux+')
+            ('johndoe', 'password123', 'John Doe', 'johndoe@example.com', 3173512584, 0, 'A+, Network+'),
+            ('janesmith', 'secure_pass', 'Jane Smith', 'janesmith@example.com', 4105686692, 0, 'CCNA, CCNP'),
+            ('michaeljohnson', 'tech3pass', 'Michael Johnson', 'michaelj@example.com', 5082959118, 0, 'Security+'),
+            ('emilydavis', 'pass4tech', 'Emily Davis', 'emilyd@example.com', 6134402951, 0, 'MCSA, MCSE'),
+            ('davidlee', 'strong_pass', 'David Lee', 'davidlee@example.com', 4573827517, 0, 'Linux+')
         ]
         for row in rows:
             sql = """
@@ -233,11 +233,11 @@ with connection:
         """
         NUMOWNERS = 10
         rows = [
-            ('owner1', 'password123', 'Alice Johnson', 'alicej@example.com', 9237967201, 0),
-            ('owner2', 'secure_pass', 'Bob Smith', 'bobsmith@example.com', 1588132397, 0),
-            ('owner3', 'owner3pass', 'Charlie Brown', 'charliebrown@example.com', 9110164139, 0),
-            ('owner4', 'pass4owner', 'James Mann', 'jamesmann@example.com', 5846949322, 0),
-            ('owner5', 'strong_pass', 'Richard King', 'richardking@example.com', 9888968081, 0)
+            ('alicejohnson', 'password123', 'Alice Johnson', 'alicej@example.com', 9237967201, 0),
+            ('bobsmith', 'secure_pass', 'Bob Smith', 'bobsmith@example.com', 1588132397, 0),
+            ('charliebrown', 'owner3pass', 'Charlie Brown', 'charliebrown@example.com', 9110164139, 0),
+            ('jamesmann', 'pass4owner', 'James Mann', 'jamesmann@example.com', 5846949322, 0),
+            ('richardking', 'strong_pass', 'Richard King', 'richardking@example.com', 9888968081, 0)
         ]
         for row in rows:
             sql = """
