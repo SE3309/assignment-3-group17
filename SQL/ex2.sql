@@ -66,7 +66,7 @@ CREATE TABLE Logs( -- log is a keyword
     panelID INT NOT NULL,
     author VARCHAR(100),
     message VARCHAR(100),
-    logDate VARCHAR(100),
+    logDate DATE,
     PRIMARY KEY(logID),
     FOREIGN KEY(panelID) REFERENCES Panel(panelID)
 );
